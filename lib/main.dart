@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_expence/transection.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,13 +14,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  List<Transaction> Trans = [
+    Transaction(id: 't1', title: 'Shoe', cost: 1500, date: DateTime.now()),
+    Transaction(id: 't2', title: 'Grosery', cost: 3000, date: DateTime.now())
+  ];
+  MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +33,53 @@ class MyHomePage extends StatelessWidget {
         title: Text('Expences'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Card(
             color: Colors.blue,
             child: Container(width: double.infinity, child: Text('Chart')),
           ),
-          Card(
-            child: Text('List of TX'),
-          )
+          Column(
+              children: Trans.map((tx) {
+            return Card(
+              child: Container(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(16),
+                      padding: EdgeInsets.all(16),
+                      child: Text(
+                        tx.cost.toString(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Color.fromARGB(255, 255, 7, 7)),
+                      ),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2)),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            padding: EdgeInsets.all(16),
+                            child: Text(
+                              tx.title,
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            )),
+                        Text(
+                          tx.date.toString(),
+                          style: TextStyle(color: Colors.grey),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            );
+          }).toList())
         ],
       ),
     );
