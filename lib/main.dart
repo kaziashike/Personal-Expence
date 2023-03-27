@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:personal_expence/transection.dart';
 
 void main() {
@@ -50,7 +51,7 @@ class MyHomePage extends StatelessWidget {
                       margin: EdgeInsets.all(16),
                       padding: EdgeInsets.all(16),
                       child: Text(
-                        tx.cost.toString(),
+                        'BDT ' + tx.cost.toString(),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -60,15 +61,15 @@ class MyHomePage extends StatelessWidget {
                           border: Border.all(color: Colors.black, width: 2)),
                     ),
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                            padding: EdgeInsets.all(16),
                             child: Text(
-                              tx.title,
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            )),
+                          tx.title,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        )),
                         Text(
                           tx.date.toString(),
                           style: TextStyle(color: Colors.grey),
