@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class MyHomePage extends StatelessWidget {
   List<Transaction> trans = [
     Transaction(id: 't1', title: 'Shoe', cost: 1500, date: DateTime.now()),
@@ -39,6 +40,7 @@ class MyHomePage extends StatelessWidget {
           Card(
             color: Colors.blue,
             child:
+                // ignore: sized_box_for_whitespace
                 Container(width: double.infinity, child: const Text('Chart')),
           ),
           Card(
@@ -46,12 +48,10 @@ class MyHomePage extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.all(10),
               child: Column(
-                children: [
-                  const TextField(
-                      decoration: InputDecoration(labelText: 'Title')),
-                  const TextField(
-                      decoration: InputDecoration(labelText: 'Price')),
-                  const ElevatedButton(onPressed: null, child: Text('Submit'))
+                children: const [
+                  TextField(decoration: InputDecoration(labelText: 'Title')),
+                  TextField(decoration: InputDecoration(labelText: 'Price')),
+                  ElevatedButton(onPressed: null, child: Text('Submit'))
                 ],
               ),
             ),
@@ -81,12 +81,11 @@ class MyHomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                            child: Text(
+                        Text(
                           tx.title,
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
-                        )),
+                        ),
                         Text(
                           DateFormat.yMMMd().format(tx.date),
                           style: const TextStyle(color: Colors.grey),
