@@ -31,24 +31,27 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expences'),
+        title: const Text('Expences'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Card(
             color: Colors.blue,
-            child: Container(width: double.infinity, child: Text('Chart')),
+            child:
+                Container(width: double.infinity, child: const Text('Chart')),
           ),
           Card(
             elevation: 5,
             child: Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  TextField(decoration: InputDecoration(labelText: 'Title')),
-                  TextField(decoration: InputDecoration(labelText: 'Price')),
-                  ElevatedButton(onPressed: null, child: Text('Submit'))
+                  const TextField(
+                      decoration: InputDecoration(labelText: 'Title')),
+                  const TextField(
+                      decoration: InputDecoration(labelText: 'Price')),
+                  const ElevatedButton(onPressed: null, child: Text('Submit'))
                 ],
               ),
             ),
@@ -57,22 +60,22 @@ class MyHomePage extends StatelessWidget {
               children: trans.map((tx) {
             return Card(
               child: Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(16),
-                      margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                      padding: const EdgeInsets.all(16),
+                      margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2)),
                       child: Text(
-                        'BDT ' + tx.cost.toString(),
-                        style: TextStyle(
+                        'BDT ${tx.cost}',
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                             color: Color.fromARGB(255, 255, 7, 7)),
                       ),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 2)),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -81,12 +84,12 @@ class MyHomePage extends StatelessWidget {
                         Container(
                             child: Text(
                           tx.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         )),
                         Text(
                           DateFormat.yMMMd().format(tx.date),
-                          style: TextStyle(color: Colors.grey),
+                          style: const TextStyle(color: Colors.grey),
                         )
                       ],
                     )
