@@ -30,6 +30,34 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('AlertDialog Title'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  TextField(),
+                  TextField(),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Add to list'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expences'),
@@ -42,19 +70,6 @@ class MyHomePage extends StatelessWidget {
             child:
                 // ignore: sized_box_for_whitespace
                 Container(width: double.infinity, child: const Text('Chart')),
-          ),
-          Card(
-            elevation: 5,
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              child: Column(
-                children: const [
-                  TextField(decoration: InputDecoration(labelText: 'Title')),
-                  TextField(decoration: InputDecoration(labelText: 'Price')),
-                  ElevatedButton(onPressed: null, child: Text('Submit'))
-                ],
-              ),
-            ),
           ),
           Column(
               children: trans.map((tx) {
@@ -98,6 +113,10 @@ class MyHomePage extends StatelessWidget {
             );
           }).toList())
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        hoverColor: Colors.black12,
+        onPressed: _showMyDialog,
       ),
     );
   }
