@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  List<Transaction> Trans = [
+  List<Transaction> trans = [
     Transaction(id: 't1', title: 'Shoe', cost: 1500, date: DateTime.now()),
     Transaction(id: 't2', title: 'Grosery', cost: 3000, date: DateTime.now())
   ];
@@ -34,22 +34,36 @@ class MyHomePage extends StatelessWidget {
         title: Text('Expences'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Card(
             color: Colors.blue,
             child: Container(width: double.infinity, child: Text('Chart')),
           ),
+          Card(
+            elevation: 5,
+            child: Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  TextField(decoration: InputDecoration(labelText: 'Title')),
+                  TextField(decoration: InputDecoration(labelText: 'Price')),
+                  ElevatedButton(onPressed: null, child: Text('Submit'))
+                ],
+              ),
+            ),
+          ),
           Column(
-              children: Trans.map((tx) {
+              children: trans.map((tx) {
             return Card(
               child: Container(
+                padding: EdgeInsets.all(16),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      margin: EdgeInsets.all(16),
                       padding: EdgeInsets.all(16),
+                      margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
                       child: Text(
                         'BDT ' + tx.cost.toString(),
                         style: TextStyle(
@@ -71,7 +85,7 @@ class MyHomePage extends StatelessWidget {
                               fontSize: 18, fontWeight: FontWeight.bold),
                         )),
                         Text(
-                          tx.date.toString(),
+                          DateFormat.yMMMd().format(tx.date),
                           style: TextStyle(color: Colors.grey),
                         )
                       ],
