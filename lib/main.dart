@@ -20,17 +20,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
-class MyHomePage extends StatelessWidget {
-  List<Transaction> trans = [
-    Transaction(id: 't1', title: 'Shoe', cost: 1500, date: DateTime.now()),
-    Transaction(id: 't2', title: 'Grosery', cost: 3000, date: DateTime.now())
-  ];
+class MyHomePage extends StatefulWidget {
   MyHomePage({super.key});
 
   @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
   Widget build(BuildContext context) {
     Future<void> _showMyDialog() async {
+      String x = '';
+      int y = 0;
       return showDialog<void>(
         context: context,
         barrierDismissible: false, // user must tap button!
@@ -39,9 +41,13 @@ class MyHomePage extends StatelessWidget {
             title: const Text('AlertDialog Title'),
             content: SingleChildScrollView(
               child: ListBody(
-                children: const <Widget>[
-                  TextField(),
-                  TextField(),
+                children: <Widget>[
+                  TextField(
+                    onChanged: (value) => x = value,
+                  ),
+                  TextField(
+                    onChanged: (value) => y = int.parse(value),
+                  ),
                 ],
               ),
             ),
@@ -49,6 +55,14 @@ class MyHomePage extends StatelessWidget {
               TextButton(
                 child: const Text('Add to list'),
                 onPressed: () {
+                  setState(() {
+                    trans.add(Transaction(
+                        id: trans.length.toString(),
+                        title: x.toString(),
+                        cost: y,
+                        date: DateTime.now()));
+                  });
+
                   Navigator.of(context).pop();
                 },
               ),
