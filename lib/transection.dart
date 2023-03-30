@@ -19,27 +19,31 @@ List<Transaction> trans = [
 
 List<int> history = [0, 0, 0, 0, 0, 0, 0];
 int returnTotal() {
-  trans.map((e) {
-    if (DateFormat('EEEE').format(e.date) == 'Saturday') {
-      history[0] += e.cost;
-    } else if (DateFormat('EEEE').format(e.date) == 'Sunday') {
-      history[1] += e.cost;
-    } else if (DateFormat('EEEE').format(e.date) == 'Monday') {
-      history[2] += e.cost;
-    } else if (DateFormat('EEEE').format(e.date) == 'Tuesday') {
-      history[3] += e.cost;
-    } else if (DateFormat('EEEE').format(e.date) == 'Wednesday') {
-      history[4] += e.cost;
-    } else if (DateFormat('EEEE').format(e.date) == 'Thursday') {
-      history[5] += e.cost;
+  for (int x = 0; x < trans.length; x++) {
+    print(DateFormat('EEEE').format(trans[x].date));
+    if (DateFormat('EEEE').format(trans[x].date) == 'Saturday') {
+      history[0] += trans[x].cost;
+    } else if (DateFormat('EEEE').format(trans[x].date) == 'Sunday') {
+      history[1] += trans[x].cost;
+    } else if (DateFormat('EEEE').format(trans[x].date) == 'Monday') {
+      history[2] += trans[x].cost;
+    } else if (DateFormat('EEEE').format(trans[x].date) == 'Tuesday') {
+      history[3] += trans[x].cost;
+    } else if (DateFormat('EEEE').format(trans[x].date) == 'Wednesday') {
+      history[4] += trans[x].cost;
+    } else if (DateFormat('EEEE').format(trans[x].date) == 'Thursday') {
+      history[5] += trans[x].cost;
     } else {
-      history[6] += e.cost;
+      history[6] += trans[x].cost;
     }
-  });
+  }
+  ;
   int total = 0;
   for (int x = 0; x <= 6; x++) {
     total += history[x];
   }
   ;
+  print(total);
+  print(history.toString());
   return total;
 }

@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:personal_expence/chart.dart';
 import 'package:personal_expence/transection.dart';
 
 void main() {
@@ -80,10 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Card(
-            color: Colors.blue,
-            child:
-                // ignore: sized_box_for_whitespace
-                Container(width: double.infinity, child: const Text('Chart')),
+            child: Container(padding: EdgeInsets.all(8), child: Chart()),
           ),
           Column(
               children: trans.map((tx) {
